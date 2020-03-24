@@ -1,0 +1,161 @@
+**********************************************************************
+git --version
+**********************************************************************
+git config --global user.name "DeshineniKrishna"
+git config --global user.email "venkatasaikrishna14@gmail.com"
+
+git config --list
+**********************************************************************
+git help config
+git config --help  //git add --help
+**********************************************************************
+
+1)I have a local code, and I want to start to track it using git
+Go to the folder,
+=> git init //initializing a empty local-git repo
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//before first commit
+=> git status
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//to add any particular file in staging area
+=> git add *****file name*****
+
+//to add all files in staging area
+=> git add -A
+
+//then recheck it by
+=> git status
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//to remove any particular file in staging area
+=> git reset *****file name*****
+
+//to add all files in staging area
+=> git reset
+
+//then recheck it by
+=> git status
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+To make a commit
+
+=> git add -A
+=> git commit -m "messages are to be typed here"
+=> git status
+=> git log
+
+=> git remote add origin <repo url>
+
+**********************************************************************
+2)To work on a existing repo
+
+=> git clone <github url> <where to clone>
+
+**********************************************************************
+viewing the info of remote repo
+
+=> git remote -v
+=> git branch -a
+
+**********************************************************************
+pushing changes
+
+commit the changes:
+=> git diff
+=> git status
+=> git add -A
+=> git commit -m "modified version"
+
+then push:
+
+=> git pull origin master(branch name) //to ensure you have latest copy 
+=> git push origin master //to make changes
+
+**********************************************************************
+create a branch for desired feature
+
+//no need of "<" and ">"
+=> git branch <branch name> //to create a branch
+=> git branch // to view all the branches 
+=> git checkout <branch name> //to change the branch
+
+commit changes as before
+
+after commiting push branch to remote
+
+=> git push -u origin deshi(new branch name)
+=> git branch -a
+
+merge a branch
+
+=>git checkout master
+=> git pull origin master
+=> git branch --merged 
+=> git merge deshi(new unmerged branch)
+=> git push origin master
+
+**********************************************************************
+Delete a branch
+
+=> git branch --merged
+=> git branch -d deshi
+=> git branch -a
+=> git push origin --delete deshi
+
+**********************************************************************
+To undo a mistake,
+
+=> git checkout <filename>
+=> git status
+=> git diff
+
+**********************************************************************
+If we commit a wrong message and realise it immediately before pushing,
+
+=> git commit --amend -m "<new message>"
+=> git log //to check the commits
+
+
+To make some changes but to the same previous commit,
+=> git commit --amend
+=> :wq (save and close)
+=> git log
+=> git log --stat
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Now, if you have just realised that commit you have made is not in your intended branch,
+then,
+
+=> copy the commit hash which you made from "git log" command (first 6-7characters is enough)
+=> git checkout <other branch where you want to shift the commit>
+=> git log
+=> git cherry-pick <ctrl+V> //Now, the commit from master is copied to your intended branch
+//cherry-pick never deletes commit from you have picked it
+=> git log
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+=> git checkout <brnach name where the commit is to deleted>
+=> git log
+
+copy the hash of the intial commit which you want to be intact in this branch, 
+
+=> 1) git reset --soft <ctrl+v>
+	or
+   2) git reset <ctrl+v> 
+	or
+   3) git reset --hard <ctrl+v>
+
+=> git log
+
+git reset doesn't get rid of untracked file, to make it,
+=> git clean -df //d is ti git rid of untracked directories and f is for files
+**********************************************************************
+
+to see the order of git logs
+=> git reflog
+
+**********************************************************************
